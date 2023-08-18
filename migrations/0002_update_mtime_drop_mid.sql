@@ -1,0 +1,3 @@
+ALTER TABLE recipe ALTER COLUMN mtime SET DEFAULT now();
+
+ALTER TABLE recipe DROP COLUMN mid;
