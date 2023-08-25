@@ -1,6 +1,6 @@
 use db::connect_to_db;
 use dotenvy;
-use models::ChefPatch;
+use recipe_scraper::scrape_recipe;
 use std::{env, sync::Arc};
 
 mod auth;
@@ -32,13 +32,18 @@ async fn main() {
             env::var("DATABASE_URL").unwrap()
         ),
     };
-    let db = connect_to_db().await.expect("Cannot connect to db");
+    let _db = Arc::new(connect_to_db().await.expect("Cannot connect to db"));
 
-    let _chef_data = ChefPatch {
-        username: Some("test".to_string()),
-        custom_tags: Some(Vec::new()),
-        email: Some("test@example.com".to_string()),
+    match scrape_recipe(
+        "https%3A%2F%2Fwww.allrecipes.com%2Frecipe%2F269276%2Fsimple-tomato-soup%2F",
+    )
+    .await
+    {
+        Ok(recipe) => {
+            println!("Got recipe: {:?}", recipe);
+        }
+        Err(e) => {
+            println!("Got error: {:?}", e);
+        }
     };
-
-    let _db = Arc::new(db);
 }

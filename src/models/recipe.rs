@@ -20,8 +20,29 @@ pub struct Recipe {
     pub cook_time: String,
     pub prep_time: String,
     pub total_time: String,
+    pub servings: i32,
 }
 
+impl Default for Recipe {
+    fn default() -> Self {
+        Recipe {
+            id: 0,
+            cid: String::new(),
+            ctime: sqlx::types::time::OffsetDateTime::now_utc(),
+            mtime: sqlx::types::time::OffsetDateTime::now_utc(),
+            title: String::new(),
+            header: String::new(),
+            ingredients: Vec::new(),
+            steps: Vec::new(),
+            tags: Vec::new(),
+            image_url: String::new(),
+            cook_time: String::new(),
+            prep_time: String::new(),
+            total_time: String::new(),
+            servings: 1,
+        }
+    }
+}
 #[derive(Default, Clone, Serialize, Deserialize)]
 pub struct RecipePatch {
     pub title: Option<String>,

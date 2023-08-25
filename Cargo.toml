@@ -11,6 +11,7 @@ tokio = { version = "*", features = ["full"] }
 warp = "*"
 reqwest = {version = "*", features = ["blocking"]}
 scraper = "*"
+regex = "*"
 
 # JSON libs
 serde = "*"
