@@ -1,0 +1,29 @@
+[package]
+name = "api_v2"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+thiserror = "1.0.39"
+tokio = { version = "*", features = ["full"] }
+warp = "*"
+reqwest = {version = "*", features = ["blocking"]}
+scraper = "*"
+regex = "*"
+
+# JSON libs
+serde = "*"
+serde_json = "*"
+serde_derive = "*"
+
+#DB libs
+sqlx = { version = "*", features = [ "runtime-tokio", "postgres", "tls-rustls", "time", "migrate"] }
+urlencoding = "*"
+dotenvy = "*"
+dotenvy_macro = "*"
+dotenv = "0.15.0"
+
+[dev-dependencies]
+anyhow = "*"

@@ -1,0 +1,1 @@
+ALTER TABLE recipe ADD servings INT DEFAULT 1;
